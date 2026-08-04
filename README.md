@@ -123,9 +123,9 @@ Run the benchmark script:
 python run_benchmarks.py
 ```
 
-- Size 10: Insertion Sort ~ 22 comparisons | Linear Search ~ 10 comparisons | Binary Search ~ 4 comparisons
-- Size 500: Insertion Sort ~ 62,000 comparisons | Linear Search ~ 500 comparisons | Binary Search ~ 9 comparisons
-- Size 3000: Insertion Sort ~ 2,240,000 comparisons | Linear Search ~ 3000 comparisons | Binary Search ~ 12 comparisons
+- Size 10: Insertion Sort 9 comparisons | Linear Search 10 comparisons | Binary Search 3 comparisons
+- Size 500: Insertion Sort 31259 comparisons | Linear Search 500 comparisons | Binary Search 8 comparisons
+- Size 3000: Insertion Sort 1820009 comparisons | Linear Search 3000 comparisons | Binary Search 11 comparisons
 
 ### Performance Trade-off Justification
 
