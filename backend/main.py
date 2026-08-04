@@ -115,7 +115,7 @@ def list_tasks(sort: Optional[str] = None, db: Session = Depends(get_db)):
     ]
 
     if sort == "priority":
-        priority_map = {"low": 1, "medium": 2, "high": 3}
+        priority_map = {"high": 1, "medium": 2, "low": 3}
         for t in task_dicts:
             t["_rank"] = priority_map.get(t["priority"], 2)
         
