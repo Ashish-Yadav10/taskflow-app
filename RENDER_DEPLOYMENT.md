@@ -28,7 +28,7 @@ All files are ready:
    - **Name:** `taskflow-api` (or your choice)
    - **Environment:** `Python 3`
    - **Build Command:** `pip install -r requirements.txt`
-   - **Start Command:** `gunicorn -w 4 -b 0.0.0.0:$PORT main:app`
+   - **Start Command:** `gunicorn -w 4 -b 0.0.0.0:$PORT -k uvicorn.workers.UvicornWorker main:app`
    - **Instance Type:** Free
 
 ### Step 3: Configure Environment Variables
