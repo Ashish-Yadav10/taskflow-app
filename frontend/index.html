@@ -1,50 +1,383 @@
+<!-- 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TaskFlow Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
+
+    <title>Animated Website</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
 </head>
+
+<body> -->
+
+    <!-- LIGHT MODE ICON -->
+    <!-- <div class="light-toggle" id="lightToggle">☀️</div> -->
+
+
+    <!-- NAVBAR -->
+    <!-- <nav class="navbar">
+
+        <div class="logo">
+            MyWebsite
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Projects</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+
+    </nav> -->
+
+
+    <!-- HERO -->
+    <!-- <section class="hero">
+
+        <div class="circle"></div>
+        <div class="circle"></div>
+
+        <h1>Welcome</h1>
+
+        <p>
+            Create beautiful websites with modern design,
+            glassmorphism, glowing effects and powerful
+            CSS animations.
+        </p>
+
+        <div class="buttons">
+
+            <a href="#" class="btn btn-primary">
+                Explore Now
+            </a>
+
+            <a href="#" class="btn">
+                Learn More
+            </a>
+
+        </div>
+
+    </section> -->
+
+
+    <!-- MARQUEE -->
+    <!-- <div class="marquee">
+
+        <div class="marquee-content">
+            ✨ DESIGN • ANIMATION • CREATIVITY • FUTURE • TECHNOLOGY • BY Ashish Yadav ✨
+        </div>
+
+    </div> -->
+
+
+    <!-- CARDS -->
+    <!-- <section>
+
+        <h2 class="section-title">
+            Amazing Features
+        </h2>
+
+        <div class="container">
+
+            <div class="cards">
+
+                <div class="card">
+
+                    <div class="icon">
+                        🚀
+                    </div>
+
+                    <h2>Fast</h2>
+
+                    <p>
+                        Lightning-fast animations and
+                        modern performance-focused design.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="icon">
+                        🎨
+                    </div>
+
+                    <h2>Beautiful</h2>
+
+                    <p>
+                        Glassmorphism, gradients, glowing
+                        elements and smooth transitions.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="icon">
+                        ⚡
+                    </div>
+
+                    <h2>Powerful</h2>
+
+                    <p>
+                        Build stunning interfaces with
+                        pure HTML and CSS.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section> -->
+
+
+    <!-- LIGHT/DARK MODE SCRIPT -->
+    <!-- <script>
+
+        const lightToggle =
+            document.getElementById("lightToggle");
+
+        lightToggle.addEventListener("click", () => {
+
+            document.body.classList.toggle("light-mode");
+
+            if (
+                document.body.classList.contains("light-mode")
+            ) {
+
+                lightToggle.textContent = "🌙";
+
+            } else {
+
+                lightToggle.textContent = "☀️";
+
+            }
+
+        });
+
+    </script> -->
+
+
+    <!-- FOOTER -->
+    <!-- <footer>
+        © 2026 MyWebsite — Designed BY Ashish Yadav ❤️
+    </footer>
+
+</body>
+
+</html> -->
+
+
+<!-- Another project -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TaskFlow Dashboard</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <script src="app.js"></script>
+</head>
+
 <body>
-    <header class="sticky-header">
-        <center><h1>TaskFlow Operations Dashboard</h1></center>
+
+    <!-- LIGHT / DARK MODE -->
+    <div class="light-toggle" id="lightToggle">☀️</div>
+
+
+    <!-- NAVBAR / HEADER -->
+    <header class="navbar">
+
+        <div class="logo">
+            TaskFlow
+        </div>
+
+        <div class="header-title">
+            Operations Dashboard
+        </div>
+
     </header>
 
-    <main class="container">
+
+    <!-- MAIN CONTENT -->
+    <main class="main-container">
+
+        <!-- ADD TASK -->
         <section class="form-section">
-            <h2>Add New Task</h2>
+
+            <div class="section-heading">
+                <span class="heading-icon">✨</span>
+
+                <div>
+                    <h2>Add New Task</h2>
+                    <p>Create and manage your tasks easily</p>
+                </div>
+            </div>
+
+
             <form id="add-task-form">
+
+                <!-- TITLE -->
                 <div class="form-group">
-                    <label for="task-title">Title</label>
-                    <input type="text" id="task-title" placeholder="e.g. Review Dark Store Inventory">
-                    <span id="title-error" class="error-msg"></span>
+
+                    <label for="task-title">
+                        Task Title
+                    </label>
+
+                    <input
+                        type="text"
+                        id="task-title"
+                        placeholder="e.g. Review Dark Store Inventory"
+                        autocomplete="off"
+                    >
+
+                    <span
+                        id="title-error"
+                        class="error-msg">
+                    </span>
+
                 </div>
 
+
+                <!-- PRIORITY -->
                 <div class="form-group">
-                    <label for="task-priority">Priority</label>
+
+                    <label for="task-priority">
+                        Priority
+                    </label>
+
                     <select id="task-priority">
-                        <option value="low">Low</option>
-                        <option value="medium" selected>Medium</option>
-                        <option value="high">High</option>
+
+                        <option value="low">
+                            🟢 Low
+                        </option>
+
+                        <option value="medium" selected>
+                            🟡 Medium
+                        </option>
+
+                        <option value="high">
+                            🔴 High
+                        </option>
+
                     </select>
+
                 </div>
 
+
+                <!-- DUE DATE -->
                 <div class="form-group">
-                    <label for="task-due">Due Date / Hint</label>
-                    <input type="text" id="task-due" placeholder="e.g. tomorrow, next friday">
+
+                    <label for="task-due">
+                        Due Date / Hint
+                    </label>
+
+                    <input
+                        type="text"
+                        id="task-due"
+                        placeholder="e.g. tomorrow, next friday"
+                        autocomplete="off"
+                    >
+
                 </div>
 
-                <button type="submit" id="submit-btn">Add Task</button>
+
+                <!-- SUBMIT -->
+                <button
+                    type="submit"
+                    id="submit-btn">
+
+                    <span>＋</span>
+                    Add Task
+
+                </button>
+
             </form>
+
         </section>
 
+
+        <!-- TASK LIST -->
         <section class="list-section">
-            <h2>Tasks List</h2>
-            <div id="task-container" class="task-container"></div>
+
+            <div class="section-heading">
+
+                <span class="heading-icon">📋</span>
+
+                <div>
+                    <h2>Tasks List</h2>
+                    <p>Your current tasks</p>
+                </div>
+
+            </div>
+
+
+            <div
+                id="task-container"
+                class="task-container">
+            </div>
+
         </section>
+
     </main>
 
+
+    <!-- FOOTER -->
+   <footer>
+        <span class="footer-highlight">
+            © 2026 TaskFlow — Designed BY Ashish Yadav ❤️
+        </span>
+    </footer>
+
+
     <script src="app.js"></script>
+
+
+    <!-- LIGHT MODE -->
+    <script>
+
+        const lightToggle =
+            document.getElementById("lightToggle");
+
+        lightToggle.addEventListener("click", () => {
+
+            document.body.classList.toggle("light-mode");
+
+            if (
+                document.body.classList.contains("light-mode")
+            ) {
+
+                lightToggle.textContent = "🌙";
+
+            } else {
+
+                lightToggle.textContent = "☀️";
+
+            }
+
+        });
+
+    </script>
+
 </body>
+
 </html>
