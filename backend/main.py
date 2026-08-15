@@ -27,6 +27,12 @@ Base.metadata.create_all(bind=engine)
 ensure_task_created_at_column()
 
 app = FastAPI(title="TaskFlow API")
+@app.get("/")
+def root():
+    return {
+        "message": "TaskFlow API is running successfully!",
+        "status": "online"
+    }
 
 # Section 1 Task 8: CORS Middleware - Support Render and GitHub Pages
 ALLOWED_ORIGINS = [
