@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TaskFlow Dashboard</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <script src="app.js"></script>
+</head>
+
+<body>
+
+    <!-- LIGHT / DARK MODE -->
+    <div class="light-toggle" id="lightToggle">☀️</div>
+
+
+    <!-- NAVBAR / HEADER -->
+    <header class="navbar">
+
+        <div class="logo">
+            🚀 TaskFlow Operations Dashboard
+        </div>
+
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-container">
+
+        <!-- ADD TASK -->
+        <section class="form-section">
+
+            <div class="section-heading">
+                <span class="heading-icon">✨</span>
+
+                <div>
+                    <h2>Add New Task</h2>
+                    <p>Create and manage your tasks easily</p>
+                </div>
+            </div>
+
+
+            <form id="add-task-form">
+
+                <!-- TITLE -->
+                <div class="form-group">
+
+                    <label for="task-title">
+                        Task Title
+                    </label>
+
+                    <input
+                        type="text"
+                        id="task-title"
+                        placeholder="e.g. Review Dark Store Inventory"
+                        autocomplete="off"
+                    >
+
+                    <span
+                        id="title-error"
+                        class="error-msg">
+                    </span>
+
+                </div>
+
+
+                <!-- PRIORITY -->
+                <div class="form-group">
+
+                    <label for="task-priority">
+                        Priority
+                    </label>
+
+                    <select id="task-priority">
+
+                        <option value="low">
+                            🟢 Low
+                        </option>
+
+                        <option value="medium" selected>
+                            🟡 Medium
+                        </option>
+
+                        <option value="high">
+                            🔴 High
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- DUE DATE -->
+                <div class="form-group">
+
+                    <label for="task-due">
+                        Due Date / Hint
+                    </label>
+
+                    <input
+                        type="text"
+                        id="task-due"
+                        placeholder="e.g. tomorrow, next friday"
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+                <!-- SUBMIT -->
+                <button
+                    type="submit"
+                    id="submit-btn">
+
+                    <span>＋</span>
+                    Add Task
+
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- TASK LIST -->
+        <section class="list-section">
+
+            <div class="section-heading">
+
+                <span class="heading-icon">📋</span>
+
+                <div>
+                    <h2>Tasks List</h2>
+                    <p>Your current tasks</p>
+                </div>
+
+            </div>
+
+
+            <div
+                id="task-container"
+                class="task-container">
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+   <footer>
+        <span class="footer-highlight">
+            © 2026 TaskFlow — Designed BY Ashish Yadav ❤️
+        </span>
+    </footer>
+
+
+    <script src="app.js"></script>
+
+
+    <!-- LIGHT MODE -->
+    <script>
+
+        const lightToggle =
+            document.getElementById("lightToggle");
+
+        lightToggle.addEventListener("click", () => {
+
+            document.body.classList.toggle("light-mode");
+
+            if (
+                document.body.classList.contains("light-mode")
+            ) {
+
+                lightToggle.textContent = "🌙";
+
+            } else {
+
+                lightToggle.textContent = "☀️";
+
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>

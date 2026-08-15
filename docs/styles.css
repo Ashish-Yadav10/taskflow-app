@@ -1,0 +1,1578 @@
+:root {
+    --cyan: #00eaff;
+    --blue: #2563eb;
+    --purple: #fc00ff;
+    --green: #22c55e;
+    --red: #ef4444;
+    --yellow: #f59e0b;
+
+    --text: #ffffff;
+    --muted: rgba(255, 255, 255, 0.68);
+
+    --glass:
+        rgba(255, 255, 255, 0.08);
+
+    --glass-border:
+        rgba(255, 255, 255, 0.16);
+
+    --shadow:
+        0 20px 60px rgba(0, 0, 0, 0.35);
+
+}
+
+/* =========================================================
+   2. RESET
+   ========================================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+
+    min-height: 100vh;
+
+    font-family:
+        "Poppins",
+        "Segoe UI",
+        sans-serif;
+
+    color: var(--text);
+
+    overflow-x: hidden;
+
+    background:
+
+        radial-gradient(
+            circle at 10% 20%,
+            rgba(252, 0, 255, 0.18),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(0, 234, 255, 0.18),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            135deg,
+            #070719,
+            #11113a,
+            #0b2534,
+            #12051d
+        );
+
+    background-size:
+        100% 100%,
+        100% 100%,
+        400% 400%;
+
+    animation:
+        backgroundAnimation 18s ease infinite;
+
+    transition:
+        color 0.7s ease,
+        background 0.7s ease;
+
+}
+
+/* =========================================================
+   3. ANIMATED BACKGROUND
+   ========================================================= */
+
+@keyframes backgroundAnimation {
+
+    0% {
+        background-position:
+            0% 0%,
+            100% 100%,
+            0% 50%;
+    }
+
+    50% {
+        background-position:
+            20% 20%,
+            80% 80%,
+            100% 50%;
+    }
+
+    100% {
+        background-position:
+            0% 0%,
+            100% 100%,
+            0% 50%;
+    }
+
+}
+
+/* =========================================================
+   4. FLOATING LIGHT EFFECT
+   ========================================================= */
+
+body::before,
+body::after {
+
+    content: "";
+
+    position: fixed;
+
+    width: 400px;
+    height: 400px;
+
+    border-radius: 50%;
+
+    filter: blur(100px);
+
+    pointer-events: none;
+
+    z-index: -1;
+
+}
+
+body::before {
+
+    background:
+        rgba(252, 0, 255, 0.18);
+
+    top: -150px;
+    left: -150px;
+
+    animation:
+        orbOne 10s ease-in-out infinite;
+
+}
+
+body::after {
+
+    background:
+        rgba(0, 234, 255, 0.15);
+
+    right: -150px;
+    bottom: -150px;
+
+    animation:
+        orbTwo 12s ease-in-out infinite;
+
+}
+
+@keyframes orbOne {
+
+    0%,
+    100% {
+        transform:
+            translate(0, 0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate(150px, 180px)
+            scale(1.25);
+    }
+
+}
+
+@keyframes orbTwo {
+
+    0%,
+    100% {
+        transform:
+            translate(0, 0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate(-150px, -150px)
+            scale(1.3);
+    }
+
+}
+
+/* =========================================================
+   5. NAVBAR
+   ========================================================= */
+
+.navbar {
+
+    position: fixed;
+
+    top: 20px;
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    width: min(760px, calc(100% - 30px));
+
+    max-width: 760px;
+
+    min-height: 72px;
+
+    padding:
+        15px 30px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 20px;
+
+    border:
+        1px solid var(--glass-border);
+
+    border-radius: 22px;
+
+    background:
+        rgba(255, 255, 255, 0.07);
+
+    backdrop-filter:
+        blur(25px);
+
+    -webkit-backdrop-filter:
+        blur(25px);
+
+    box-shadow:
+        0 15px 50px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+    z-index: 1000;
+
+    animation:
+        navbarAnimation 0.9s ease forwards;
+
+}
+
+@keyframes navbarAnimation {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translate(-50%, 0);
+    }
+
+}
+
+/* =========================================================
+   6. LOGO
+   ========================================================= */
+
+.logo {
+
+    display: block;
+    width: 100%;
+    text-align: center;
+
+    font-size: 28px;
+
+    font-weight: 900;
+
+    letter-spacing: -1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--cyan),
+            var(--purple),
+            var(--cyan)
+        );
+
+    background-size:
+        200% auto;
+
+    -webkit-background-clip: text;
+
+    background-clip: text;
+
+    color: transparent;
+
+    animation:
+        logoAnimation 4s linear infinite;
+
+}
+
+@keyframes logoAnimation {
+
+    to {
+        background-position:
+            200% center;
+    }
+
+}
+
+/* =========================================================
+   7. HEADER TITLE
+   ========================================================= */
+
+.header-title {
+
+    color:
+        rgba(255, 255, 255, 0.75);
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    letter-spacing: 1px;
+
+}
+
+/* =========================================================
+   8. MAIN CONTAINER
+   ========================================================= */
+
+.main-container {
+
+    width: min(760px, 92%);
+
+    max-width: 760px;
+
+    margin: 0 auto;
+
+    padding:
+
+        140px 0 80px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 35px;
+
+}
+
+/* =========================================================
+   9. GLASS SECTIONS
+   ========================================================= */
+
+.form-section,
+.list-section {
+
+    position: relative;
+
+    width: 100%;
+
+    padding: 35px;
+
+    border:
+        1px solid var(--glass-border);
+
+    border-radius: 28px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.10),
+            rgba(255, 255, 255, 0.035)
+        );
+
+    backdrop-filter:
+        blur(25px);
+
+    -webkit-backdrop-filter:
+        blur(25px);
+
+    box-shadow:
+        var(--shadow);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.5s ease,
+        border-color 0.5s ease,
+        box-shadow 0.5s ease;
+
+}
+
+.form-section::before,
+.list-section::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: -100px;
+    right: -100px;
+
+    width: 200px;
+    height: 200px;
+
+    border-radius: 50%;
+
+    background:
+        var(--cyan);
+
+    filter:
+        blur(90px);
+
+    opacity: 0.12;
+
+    pointer-events: none;
+
+}
+
+.form-section:hover,
+.list-section:hover {
+
+    transform:
+        translateY(-5px);
+
+    border-color:
+        rgba(0, 234, 255, 0.35);
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(0, 234, 255, 0.08);
+
+}
+
+/* =========================================================
+   10. SECTION HEADING
+   ========================================================= */
+
+.section-heading {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 30px;
+
+}
+
+.heading-icon {
+
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    font-size: 25px;
+
+    border-radius: 17px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 234, 255, 0.2),
+            rgba(252, 0, 255, 0.2)
+        );
+
+    border:
+        1px solid rgba(255, 255, 255, 0.15);
+
+    box-shadow:
+        0 0 25px rgba(0, 234, 255, 0.15);
+
+}
+
+.section-heading h2 {
+
+    font-size: 23px;
+
+    font-weight: 700;
+
+}
+
+.section-heading p {
+
+    margin-top: 3px;
+
+    color:
+        var(--muted);
+
+    font-size: 13px;
+
+}
+
+/* =========================================================
+   11. FORM
+   ========================================================= */
+
+.form-group {
+
+    margin-bottom: 22px;
+
+}
+
+.form-group label {
+
+    display: block;
+
+    margin-bottom: 9px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color:
+        rgba(255, 255, 255, 0.9);
+
+}
+
+.form-group input,
+.form-group select {
+
+    width: 100%;
+
+    padding:
+        15px 17px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.15);
+
+    border-radius: 14px;
+
+    outline: none;
+
+    color: #ffffff;
+
+    background:
+        rgba(255, 255, 255, 0.055);
+
+    font-family:
+        inherit;
+
+    font-size: 14px;
+
+    transition:
+        all 0.35s ease;
+
+}
+
+.form-group input::placeholder {
+
+    color:
+        rgba(255, 255, 255, 0.38);
+
+}
+
+.form-group input:hover,
+.form-group select:hover {
+
+    border-color:
+        rgba(0, 234, 255, 0.45);
+
+}
+
+.form-group input:focus,
+.form-group select:focus {
+
+    border-color:
+        var(--cyan);
+
+    transform:
+        translateY(-2px);
+
+    background:
+        rgba(0, 234, 255, 0.06);
+
+    box-shadow:
+        0 0 0 3px rgba(0, 234, 255, 0.08),
+        0 0 25px rgba(0, 234, 255, 0.12);
+
+}
+
+.form-group select {
+
+    cursor: pointer;
+
+}
+
+.form-group select option {
+
+    color: #111111;
+
+    background: #ffffff;
+
+}
+
+/* =========================================================
+   12. ERROR
+   ========================================================= */
+
+.error-msg {
+
+    display: block;
+
+    margin-top: 8px;
+
+    color:
+        #ff6b6b;
+
+    font-size: 12px;
+
+    font-weight: 500;
+
+}
+
+.error-msg:empty {
+
+    display: none;
+
+}
+
+/* =========================================================
+   13. ADD TASK BUTTON
+   ========================================================= */
+
+#submit-btn {
+
+    position: relative;
+
+    width: 100%;
+
+    padding:
+        16px 25px;
+
+    border: none;
+
+    border-radius: 15px;
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            90deg,
+            #00a8ff,
+            #00eaff,
+            #7c3aed,
+            #fc00ff
+        );
+
+    background-size:
+        300% 100%;
+
+    font-family:
+        inherit;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 10px 30px rgba(0, 234, 255, 0.2);
+
+    animation:
+        buttonGradient 5s linear infinite;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+
+}
+
+@keyframes buttonGradient {
+
+    0% {
+        background-position:
+            0% 50%;
+    }
+
+    50% {
+        background-position:
+            100% 50%;
+    }
+
+    100% {
+        background-position:
+            0% 50%;
+    }
+
+}
+
+#submit-btn:hover {
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 15px 40px rgba(0, 234, 255, 0.35),
+        0 0 25px rgba(252, 0, 255, 0.2);
+
+}
+
+#submit-btn:active {
+
+    transform:
+        translateY(-1px)
+        scale(0.98);
+
+}
+
+#submit-btn span {
+
+    font-size: 20px;
+
+    margin-right: 6px;
+
+}
+
+/* =========================================================
+   14. TASK CONTAINER
+   ========================================================= */
+
+.task-container {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+
+    min-height: 250px;
+
+}
+
+/* =========================================================
+   15. TASK CARD
+   IMPORTANT: JS USES .task-card
+   ========================================================= */
+
+.task-card {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding:
+        20px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 20px;
+
+    background:
+        rgba(255, 255, 255, 0.055);
+
+    backdrop-filter:
+        blur(15px);
+
+    -webkit-backdrop-filter:
+        blur(15px);
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.18);
+
+    overflow: hidden;
+
+    animation:
+        taskAppear 0.6s ease forwards;
+
+    transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+
+}
+
+@keyframes taskAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateX(40px)
+            scale(0.95);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateX(0)
+            scale(1);
+
+    }
+
+}
+
+.task-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 3px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            var(--cyan),
+            var(--purple)
+        );
+
+}
+
+.task-card:hover {
+
+    transform:
+        translateY(-5px)
+        scale(1.01);
+
+    border-color:
+        rgba(0, 234, 255, 0.3);
+
+    box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.3),
+        0 0 25px rgba(0, 234, 255, 0.08);
+
+}
+
+/* =========================================================
+   16. TASK INFO
+   ========================================================= */
+
+.task-info {
+
+    min-width: 0;
+
+    flex: 1;
+
+}
+
+.task-title {
+
+    display: block;
+
+    margin-bottom: 9px;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    color: #ffffff;
+
+    word-break: break-word;
+
+}
+
+.task-meta {
+
+    display: flex;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    color:
+        rgba(255, 255, 255, 0.55);
+
+    font-size: 12px;
+
+}
+
+/* =========================================================
+   17. PRIORITY BADGES
+   ========================================================= */
+
+.priority-badge {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    padding:
+        5px 10px;
+
+    border-radius:
+        50px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+
+}
+
+.priority-high {
+
+    color:
+        #ff8b8b;
+
+    background:
+        rgba(239, 68, 68, 0.12);
+
+    border:
+        1px solid rgba(239, 68, 68, 0.25);
+
+}
+
+.priority-medium {
+
+    color:
+        #ffd166;
+
+    background:
+        rgba(245, 158, 11, 0.12);
+
+    border:
+        1px solid rgba(245, 158, 11, 0.25);
+
+}
+
+.priority-low {
+
+    color:
+        #5ee7a2;
+
+    background:
+        rgba(34, 197, 94, 0.12);
+
+    border:
+        1px solid rgba(34, 197, 94, 0.25);
+
+}
+
+.due-info {
+
+    color:
+        rgba(255, 255, 255, 0.55);
+
+}
+
+.created-info {
+
+    color:
+        rgba(0, 234, 255, 0.85);
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+}
+
+/* =========================================================
+   18. TASK ACTIONS
+   ========================================================= */
+.task-actions {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.task-actions button {
+    border: none;
+    padding:
+        9px 13px;
+    border-radius: 10px;
+    font-family:
+        inherit;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        all 0.3s ease;
+}
+/* EDIT */
+.edit-btn {
+    color:
+        #6ee7ff;
+    background:
+        rgba(0, 234, 255, 0.08);
+    border:
+        1px solid rgba(0, 234, 255, 0.2) !important;
+}
+
+.edit-btn:hover {
+    color: #ffffff;
+    background:
+        rgba(0, 234, 255, 0.18);
+    transform:
+        translateY(-2px);
+    box-shadow:
+        0 0 15px rgba(0, 234, 255, 0.2);
+}
+/* DELETE */
+.btn-delete {
+    color:
+        #ff8585;
+    background:
+        rgba(239, 68, 68, 0.08);
+    border:
+        1px solid rgba(239, 68, 68, 0.2) !important;
+}
+
+.btn-delete:hover {
+    color: #ffffff;
+    background:
+        rgba(239, 68, 68, 0.2);
+    transform:
+        translateY(-2px);
+    box-shadow:
+        0 0 15px rgba(239, 68, 68, 0.2);
+}
+
+.task-actions button:active {
+    transform:
+        scale(0.94);
+}
+
+
+/* =========================================================
+   19. EMPTY STATE
+   ========================================================= */
+
+.empty-state {
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px;
+    border:
+        1px dashed rgba(255, 255, 255, 0.14);
+    border-radius: 20px;
+}
+
+.empty-icon {
+    font-size: 45px;
+    margin-bottom: 15px;
+    opacity: 0.8;
+    animation:
+        emptyFloat 3s ease-in-out infinite;
+}
+
+@keyframes emptyFloat {
+
+    0%,
+    100% {
+        transform:
+            translateY(0);
+    }
+    50% {
+        transform:
+            translateY(-10px);
+    }
+}
+
+.empty-state h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.empty-state p {
+    color:
+        var(--muted);
+    font-size: 13px;
+}
+
+/* =========================================================
+   20. CONNECTION ERROR
+   ========================================================= */
+
+.connection-error {
+    text-align: center;
+    padding: 40px 20px;
+    border-radius: 20px;
+    background:
+        rgba(239, 68, 68, 0.06);
+    border:
+        1px solid rgba(239, 68, 68, 0.15);
+}
+
+.error-icon {
+    font-size: 40px;
+
+    margin-bottom: 10px;
+}
+
+.connection-error h3 {
+    color:
+        #ff8585;
+    margin-bottom: 5px;
+}
+
+.connection-error p {
+    color:
+        var(--muted);
+
+    font-size: 13px;
+}
+
+/* =========================================================
+   21. LIGHT TOGGLE
+   ========================================================= */
+
+.light-toggle {
+
+    position: fixed;
+
+    top: 20px;
+    right: 20px;
+
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    z-index: 2000;
+
+    font-size: 24px;
+
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.2);
+
+    backdrop-filter:
+        blur(20px);
+
+    -webkit-backdrop-filter:
+        blur(20px);
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.25),
+        0 0 20px rgba(0, 234, 255, 0.15);
+
+    transition:
+        all 0.5s ease;
+
+}
+
+
+.light-toggle:hover {
+
+    transform:
+        rotate(20deg)
+        scale(1.12);
+
+    box-shadow:
+        0 0 20px var(--cyan),
+        0 0 40px rgba(252, 0, 255, 0.25);
+
+}
+
+/* =========================================================
+   22. FOOTER
+   ========================================================= */
+
+footer {
+
+    padding:
+        35px 20px;
+    text-align: center;
+    color:
+        rgba(255, 255, 255, 0.55);
+    font-size: 13px;
+    background:
+        rgba(0, 0, 0, 0.15);
+    border-top:
+        1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+}
+
+/* =========================================================
+   FOOTER HIGHLIGHT
+   ========================================================= */
+
+.footer-highlight {
+    display: inline-block;
+    font-size: 17px;
+    font-weight: 600;
+    color: #00eaff;
+    text-shadow:
+        0 0 5px rgba(0, 234, 255, 0.4),
+        0 0 12px rgba(0, 234, 255, 0.2);
+    animation: footerGlow 2.5s ease-in-out infinite;
+    transition:
+        color 0.4s ease,
+        transform 0.4s ease;
+}
+
+@keyframes footerGlow {
+    0%,
+    100% {
+        opacity: 0.85;
+        text-shadow:
+            0 0 5px rgba(0, 234, 255, 0.3),
+            0 0 10px rgba(0, 234, 255, 0.15);
+        transform: translateY(0);
+    }
+
+    50% {
+        opacity: 1;
+        color: #22c55e;
+        text-shadow:
+            0 0 8px rgba(34, 197, 94, 0.7),
+            0 0 18px rgba(34, 197, 94, 0.4);
+        transform: translateY(-2px);
+    }
+}
+
+/* Mouse hover */
+.footer-highlight:hover {
+    color: #22c55e;
+    transform: scale(1.04);
+    text-shadow:
+        0 0 10px rgba(34, 197, 94, 0.8),
+        0 0 25px rgba(34, 197, 94, 0.5);
+}
+
+/* =========================================================
+   23. LIGHT MODE
+   ========================================================= */
+
+body.light-mode {
+    color: #172033;
+    background:
+        radial-gradient(
+            circle at 10% 20%,
+            rgba(0, 200, 255, 0.15),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(34, 197, 94, 0.15),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #eaffff,
+            #f7edff,
+            #effff3
+        );
+    background-size:
+        100% 100%,
+        100% 100%,
+        400% 400%;
+}
+
+body.light-mode .navbar {
+
+    background:
+        rgba(255, 255, 255, 0.7);
+
+    border-color:
+        rgba(0, 0, 0, 0.08);
+
+    box-shadow:
+        0 15px 50px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .header-title {
+    color:
+        #16a34a;
+}
+
+body.light-mode .form-section,
+body.light-mode .list-section {
+
+    background: rgba(255, 255, 255, 0.62);
+
+    border-color: rgba(255, 255, 255, 0.8);
+
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+}
+
+body.light-mode .section-heading h2 {
+    color:#172033;
+}
+
+body.light-mode .section-heading p {
+    color:#16a34a;
+}
+
+body.light-mode .form-group label {
+    color:#263246;
+}
+
+body.light-mode .form-group input,
+body.light-mode .form-group select {
+
+    color:#172033;
+
+    background:rgba(255, 255, 255, 0.65);
+
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .form-group input::placeholder {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+body.light-mode .task-card {
+    background:
+        rgba(255, 255, 255, 0.68);
+    border-color:
+        rgba(0, 0, 0, 0.07);
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.07);
+}
+
+body.light-mode .task-title {
+    color:#172033;
+}
+
+body.light-mode .task-meta {
+
+    color:#64748b;
+}
+
+body.light-mode .due-info {
+    color: #64748b;
+}
+
+body.light-mode .empty-state {
+    border-color: rgba(0, 0, 0, 0.12);
+}
+
+body.light-mode .empty-state p {
+    color: #64748b;
+}
+
+body.light-mode .light-toggle {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.1),
+        0 0 25px rgba(255, 190, 0, 0.3);
+}
+
+body.light-mode footer {
+    color: #64748b;
+    background: rgba(255, 255, 255, 0.35);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+/* =========================================================
+   24. SCROLLBAR
+   ========================================================= */
+::-webkit-scrollbar {
+    width: 9px;
+}
+
+::-webkit-scrollbar-track {
+    background: #080819;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background:
+        linear-gradient(
+            #00eaff,
+            #fc00ff
+        );
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background:
+        linear-gradient(
+            #fc00ff,
+            #00eaff
+        );
+}
+
+body.light-mode::-webkit-scrollbar-track {
+    background: #effafa;
+}
+
+
+body.light-mode::-webkit-scrollbar-thumb {
+    background:
+        linear-gradient(
+            #16a34a,
+            #22c55e
+        );
+}
+
+
+/* =========================================================
+   25. TEXT SELECTION
+   ========================================================= */
+
+::selection {
+    color: #ffffff;
+    background: #16a34a;
+}
+
+
+/* =========================================================
+   26. RESPONSIVE — TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+    .main-container {
+        grid-template-columns: 1fr;
+        max-width: 700px;
+    }
+}
+
+
+/* =========================================================
+   27. RESPONSIVE — MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+    .navbar {
+        top: 10px;
+        width: calc(100% - 30px);
+        min-height: 62px;
+        padding: 12px 18px;
+        border-radius: 17px;
+    }
+
+    .logo {
+        font-size: 22px;
+    }
+
+    .header-title {
+        display: none;
+    }
+
+    .main-container {
+        width: calc(100% - 24px);
+        padding: 105px 0 50px;
+        gap: 20px;
+    }
+
+    .form-section,
+    .list-section {
+        padding:
+            22px;
+
+        border-radius:
+            22px;
+
+    }
+
+    .section-heading {
+        margin-bottom: 23px;
+    }
+
+    .heading-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 21px;
+    }
+
+    .section-heading h2 {
+        font-size: 19px;
+    }
+
+    .task-card {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 18px;
+    }
+
+    .task-actions {
+        width: 100%;
+    }
+
+    .task-actions button {
+        flex: 1;
+    }
+
+    .light-toggle {
+        width: 52px;
+        height: 52px;
+        right: 18px;
+        bottom: 18px;
+    }
+
+    footer {
+        padding: 28px 15px;
+    }
+}
+
+/* =========================================================
+   28. VERY SMALL SCREEN
+   ========================================================= */
+
+@media (max-width: 400px) {
+    .main-container {
+        width:
+            calc(100% - 16px);
+    }
+
+
+    .form-section,
+    .list-section {
+        padding: 18px;
+    }
+
+    .form-group input,
+    .form-group select {
+        padding: 13px;
+    }
+
+    #submit-btn {
+        padding: 14px;
+    }
+}
+
+/* =========================================================
+   29. REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            0.01ms !important;
+    }
+}
