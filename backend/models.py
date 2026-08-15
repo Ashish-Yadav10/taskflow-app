@@ -1,3 +1,4 @@
+from datetime import datetime
 from sqlalchemy import Column, Integer, String, ForeignKey, CheckConstraint
 from sqlalchemy.orm import relationship
 from backend.database import Base
@@ -30,6 +31,7 @@ class Task(Base):
     title = Column(String, nullable=False)
     priority = Column(String, nullable=False)
     due_date = Column(String, nullable=True)
+    created_at = Column(String, nullable=False, default=lambda: datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     project_id = Column(Integer, ForeignKey("projects.id"), nullable=False)
 
     __table_args__ = (

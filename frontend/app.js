@@ -87,6 +87,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 due_date:
                     dueInput.value.trim() || null,
 
+                created_at:
+                    new Date().toISOString(),
+
                 project_id:
                     DEFAULT_PROJECT_ID
 
@@ -293,6 +296,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     task.priority || "medium";
 
 
+                function formatCreatedAt(value) {
+                    if (!value) return "No timestamp";
+                    const date = new Date(value.replace(" ", "T"));
+                    return isNaN(date.getTime()) ? value : date.toLocaleString();
+                }
+
                 metaEl.innerHTML = `
 
                     <span class="
@@ -304,6 +313,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     <span class="due-info">
                         📅 ${task.due_date || "No due date"}
+                    </span>
+
+                    <span class="created-info">
+                        🕒 ${formatCreatedAt(task.created_at)}
                     </span>
 
                 `;

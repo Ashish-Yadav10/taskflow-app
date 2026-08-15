@@ -43,6 +43,7 @@ class TaskCreate(BaseModel):
     title: str
     priority: str = Field(default="medium", pattern="^(low|medium|high)$")
     due_date: Optional[str] = None
+    created_at: Optional[str] = None
     project_id: int
 
     @field_validator('title')
@@ -67,6 +68,7 @@ class TaskResponse(BaseModel):
     title: str
     priority: str
     due_date: Optional[str] = None
+    created_at: str
     project_id: int
 
     class Config:

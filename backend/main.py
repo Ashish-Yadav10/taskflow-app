@@ -1,11 +1,12 @@
 import time
+from datetime import datetime
 from fastapi import FastAPI, Depends, HTTPException, Request, status
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from sqlalchemy import func
 from typing import List, Optional
 
-from backend.database import engine, Base, get_db
+from backend.database import engine, Base, get_db, ensure_task_created_at_column
 from backend.models import User, Project, Task
 from backend.schemas import (
     UserCreate, UserResponse,
@@ -17,6 +18,7 @@ from backend.algorithms import insertion_sort, binary_search, linear_search
 from backend.ai_parser import mock_ai_parse
 
 Base.metadata.create_all(bind=engine)
+ensure_task_created_at_column()
 
 app = FastAPI(title="TaskFlow API")
 
@@ -98,7 +100,15 @@ def create_task(task: TaskCreate, db: Session = Depends(get_db)):
     proj = db.query(Project).filter(Project.id == task.project_id).first()
     if not proj:
         raise HTTPException(status_code=404, detail="Project not found")
-    db_task = Task(title=task.title, priority=task.priority, due_date=task.due_date, project_id=task.project_id)
+
+    created_at = task.created_at or datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    db_task = Task(
+        title=task.title,
+        priority=task.priority,
+        due_date=task.due_date,
+        created_at=created_at,
+        project_id=task.project_id,
+    )
     db.add(db_task)
     db.commit()
     db.refresh(db_task)
@@ -110,7 +120,14 @@ def create_task(task: TaskCreate, db: Session = Depends(get_db)):
 def list_tasks(sort: Optional[str] = None, db: Session = Depends(get_db)):
     tasks = db.query(Task).all()
     task_dicts = [
-        {"id": t.id, "title": t.title, "priority": t.priority, "due_date": t.due_date, "project_id": t.project_id}
+        {
+            "id": t.id,
+            "title": t.title,
+            "priority": t.priority,
+            "due_date": t.due_date,
+            "created_at": t.created_at,
+            "project_id": t.project_id,
+        }
         for t in tasks
     ]
 
@@ -131,7 +148,7 @@ def list_tasks(sort: Optional[str] = None, db: Session = Depends(get_db)):
 @app.get("/tasks/search")
 def search_tasks(title: str, algo: str = "binary", db: Session = Depends(get_db)):
     tasks = db.query(Task).all()
-    index = [{"id": t.id, "title": t.title, "priority": t.priority, "due_date": t.due_date, "project_id": t.project_id} for t in tasks]
+    index = [{"id": t.id, "title": t.title, "priority": t.priority, "due_date": t.due_date, "created_at": t.created_at, "project_id": t.project_id} for t in tasks]
 
     matched_idx = -1
     if algo == "binary":
@@ -201,6 +218,7 @@ def quick_add_task(payload: QuickAddRequest, db: Session = Depends(get_db)):
         title=parsed["title"],
         priority=parsed["priority"],
         due_date=parsed["due_date_hint"],
+        created_at=datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         project_id=payload.project_id
     )
     db.add(db_task)
