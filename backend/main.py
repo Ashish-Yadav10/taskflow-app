@@ -1,10 +1,16 @@
 import time
+import os
 from datetime import datetime
 from fastapi import FastAPI, Depends, HTTPException, Request, status
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from sqlalchemy.orm import Session
 from sqlalchemy import func
 from typing import List, Optional
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 from backend.database import engine, Base, get_db, ensure_task_created_at_column
 from backend.models import User, Project, Task
@@ -22,10 +28,31 @@ ensure_task_created_at_column()
 
 app = FastAPI(title="TaskFlow API")
 
-# Section 1 Task 8: CORS Middleware
+# Section 1 Task 8: CORS Middleware - Support Render and GitHub Pages
+ALLOWED_ORIGINS = [
+    # Development
+    "http://localhost:5500",
+    "http://127.0.0.1:5500",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+    # GitHub Pages
+    "https://ashish-yadav10.github.io",
+    # Render (will be auto-configured)
+]
+
+# Add Render URL if available
+render_url = os.getenv("RENDER_EXTERNAL_URL")
+if render_url:
+    ALLOWED_ORIGINS.append(render_url)
+
+# Add environment-specific URLs
+frontend_url = os.getenv("FRONTEND_URL")
+if frontend_url:
+    ALLOWED_ORIGINS.append(frontend_url)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5500", "http://127.0.0.1:5500", "http://localhost:8000"],
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["Content-Type", "Authorization"],
